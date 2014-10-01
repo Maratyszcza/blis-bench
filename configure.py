@@ -127,6 +127,6 @@ if __name__ == "__main__":
                 "emflags": "-s EXPORTED_FUNCTIONS=\"['_runBenchmark','_main','_malloc','_free']\" -s DISABLE_EXCEPTION_CATCHING=1 -s TOTAL_MEMORY=536870912 -s ALLOW_MEMORY_GROWTH=0 -s FORCE_ALIGNED_MEMORY=1 -s PRECISE_F32=2 -s GC_SUPPORT=0 -s NO_EXIT_RUNTIME=1"
             })
         ninja.build(os.path.join(root_dir, "artifacts", "blis-bench.js"),
-            "UGLIFYJS",
+            "CONCATENATE",
             [os.path.join(root_dir, "artifacts", "blis-bench.asm.js"),
             os.path.join(root_dir, "src", "emscripten", "entry.js")])
