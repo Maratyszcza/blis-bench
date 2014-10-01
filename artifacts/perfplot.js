@@ -26,8 +26,8 @@ function PerfPlot(root, title) {
 	this.performanceTop = 5;
 
 	var margin = {top: 50, right: 25, bottom: 75, left: 75};
-	this.width = 1024 - margin.left - margin.right;
-	this.height = 768 - margin.top - margin.bottom;
+	this.width = 800 - margin.left - margin.right;
+	this.height = 600 - margin.top - margin.bottom;
 
 	this.scaleX = d3.scale.log()
 		.base(2)
@@ -105,7 +105,7 @@ function PerfPlot(root, title) {
 PerfPlot.prototype.add = function(datatype, size, performance) {
 	if (isFinite(performance)) {
 		if (performance > plot.performanceTop) {
-			this.performanceTop = Math.round(performance / 5) * 5;
+			this.performanceTop = Math.ceil(performance / 0.5) * 0.5;
 			this.scaleY.domain([0, this.performanceTop]);
 			this.chart.selectAll("g.y.axis").call(this.axisY);
 			for (var dt in this.points) {
