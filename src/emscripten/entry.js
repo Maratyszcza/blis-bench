@@ -78,8 +78,8 @@ var ArrayZGEMM = function(a, b, c, size) {
 			for (var k = 0; k < size; ++k) {
 				var aReal = a[2*(i*size+k)];
 				var aImag = a[2*(i*size+k)+1];
-				var bReal = b[2*(i*size+k)];
-				var bImag = b[2*(i*size+k)+1]
+				var bReal = b[2*(k*size+j)];
+				var bImag = b[2*(k*size+j)+1]
 				sumReal += aReal * bReal - aImag * bImag;
 				sumImag += aReal * bImag + aImag * bReal;
 			}
@@ -96,8 +96,8 @@ var Float32ArrayCGEMM = function(a, b, c, size) {
 			for (var k = 0; k < size; ++k) {
 				var aReal = a[2*(i*size+k)];
 				var aImag = a[2*(i*size+k)+1];
-				var bReal = b[2*(i*size+k)];
-				var bImag = b[2*(i*size+k)+1]
+				var bReal = b[2*(k*size+j)];
+				var bImag = b[2*(k*size+j)+1]
 				sumReal += aReal * bReal - aImag * bImag;
 				sumImag += aReal * bImag + aImag * bReal;
 			}
@@ -114,8 +114,8 @@ var Float64ArrayZGEMM = function(a, b, c, size) {
 			for (var k = 0; k < size; ++k) {
 				var aReal = a[2*(i*size+k)];
 				var aImag = a[2*(i*size+k)+1];
-				var bReal = b[2*(i*size+k)];
-				var bImag = b[2*(i*size+k)+1]
+				var bReal = b[2*(k*size+j)];
+				var bImag = b[2*(k*size+j)+1]
 				sumReal += aReal * bReal - aImag * bImag;
 				sumImag += aReal * bImag + aImag * bReal;
 			}
