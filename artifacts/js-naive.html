@@ -57,7 +57,9 @@
 	<body onload="onLoad();">
 		<div id="showcase"></div>
 		<script>
-			plot = new PerfPlot("#showcase", "Performance of Naive GEMM with JavaScript Arrays");
+			plot = new PerfPlot("#showcase", "Performance of Naive GEMM with JavaScript Arrays", [
+				{datatype: "d", name: "DGEMM"},
+				{datatype: "z", name: "ZGEMM"}]);
 		</script>
 	</body>
 </html>

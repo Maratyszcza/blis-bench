@@ -1,28 +1,5 @@
-function PerfPlot(root, title) {
-	this.size = {
-		"s": [],
-		"d": [],
-		"c": [],
-		"z": []
-	};
-	this.performance = {
-		"s": [],
-		"d": [],
-		"c": [],
-		"z": []
-	};
-	this.points = {
-		"s": [],
-		"d": [],
-		"c": [],
-		"z": []
-	};
-	this.lines = {
-		"s": null,
-		"d": null,
-		"c": null,
-		"z": null
-	};
+function PerfPlot(root, title, lines) {
+	this.data = [];
 	this.performanceTop = 5;
 
 	var margin = {top: 75, right: 25, bottom: 75, left: 75};
@@ -81,47 +58,78 @@ function PerfPlot(root, title) {
 			.style("text-anchor", "middle")
 			.text("Performance, GFLOPS");
 
+	var scaleX = this.scaleX;
+	var scaleY = this.scaleY;
 	this.line = d3.svg.line()
-		.x(function(d, i) { return this.scaleX(d[0]); })
-		.y(function(d) { return this.scaleY(d[1]); })
+		.x(function(d) { return scaleX(d.size); })
+		.y(function(d) { return scaleY(d.performance); })
 		.interpolate("linear");
 
-	this.title = this.chart.append("text")
-		.attr("x", (this.width / 2))
-		.attr("y", margin.top)
+	this.chart.append("text")
+		.attr("x", margin.left + this.width / 2)
+		.attr("y", margin.top * 0.75)
 		.attr("text-anchor", "middle")
 		.attr("class", "title")
 		.text(title);
-	this.lines["s"] = this.main.append("svg:path")
+	this.main.append("svg:path")
+		.datum([])
 		.attr("class", "s trend");
-	this.lines["d"] = this.main.append("svg:path")
+	this.main.append("svg:path")
+		.datum([])
 		.attr("class", "d trend");
-	this.lines["c"] = this.main.append("svg:path")
+	this.main.append("svg:path")
+		.datum([])
 		.attr("class", "c trend");
-	this.lines["z"] = this.main.append("svg:path")
+	this.main.append("svg:path")
+		.datum([])
 		.attr("class", "z trend");
+
+	var legend = this.main.selectAll("text.legend")
+		.data(lines).enter();
+	legend.append("text")
+				.attr("x", function(d, i) { return 30; })
+				.attr("y", function(d, i) { return 50 + i * 20; })
+				.attr("class", function(d) { return "legend " + d.datatype; })
+				.text(function(d) { return d.name; })
+	legend.append("rect")
+				.attr("x", function(d, i) { return 15; })
+				.attr("y", function(d, i) { return 40 + i * 20; })
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("class", function(d) { return "legend " + d.datatype; })
 }
 
 PerfPlot.prototype.add = function(datatype, size, performance) {
 	if (isFinite(performance)) {
+		var scaleX = this.scaleX;
+		var scaleY = this.scaleY;
 		if (performance > plot.performanceTop) {
 			this.performanceTop = Math.ceil(performance / 0.5) * 0.5;
 			this.scaleY.domain([0, this.performanceTop]);
 			this.chart.selectAll("g.y.axis").call(this.axisY);
-			for (var dt in this.points) {
-				for (var i = 0; i < plot.points[dt].length; i++) {
-					this.points[dt][i].attr("cx", this.scaleX(this.size[dt][i]));
-					this.points[dt][i].attr("cy", this.scaleY(this.performance[dt][i]));
-				}
+			if (this.data.length !== 0) {
+				this.main.selectAll("circle")
+					.attr("cy", function(d) { return scaleY(d.performance); });
+				this.main.selectAll("path.trend")
+					.attr("d", this.line);
 			}
 		}
-		this.size[datatype].push(size);
-		this.performance[datatype].push(performance);
-		var point = this.main.append("svg:circle")
-			.attr("cx", this.scaleX(size))
-			.attr("cy", this.scaleY(performance))
-			.attr("r", 2);
-		this.points[datatype].push(point);
-		this.lines[datatype].attr("d", this.line(d3.zip(this.size[datatype], this.performance[datatype])));
+		this.data.push({
+			size: size,
+			datatype: datatype,
+			performance: performance
+		});
+		var subdata = this.data.filter(function(d) { return d.datatype === datatype; });
+		this.main.selectAll("circle." + datatype)
+			.data(subdata)
+			.enter()
+				.append("circle")
+				.attr("cx", function(d) { return scaleX(d.size); })
+				.attr("cy", function(d) { return scaleY(d.performance); })
+				.attr("class", datatype)
+				.attr("r", 2);
+		this.main.selectAll("path.trend." + datatype)
+			.datum(subdata)
+			.attr("d", this.line);
 	}
 }

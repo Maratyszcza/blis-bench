@@ -2,17 +2,29 @@
 	fill: none;
 	stroke-width: 1.5px;
 }
-.s.trend {
+.s.trend, .s.legend {
 	stroke: red;
 }
-.d.trend {
+.d.trend, .d.legend {
 	stroke: green;
 }
-.c.trend {
+.c.trend, .c.legend {
 	stroke: blue;
 }
-.z.trend {
+.z.trend, .z.legend {
 	stroke: orange;
+}
+.s.legend {
+	fill: red;
+}
+.d.legend {
+	fill: green;
+}
+.c.legend {
+	fill: blue;
+}
+.z.legend {
+	fill: orange;
 }
 .axis path,
 .axis line {
