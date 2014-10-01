@@ -1,0 +1,30 @@
+.trend {
+	fill: none;
+	stroke-width: 1.5px;
+}
+.s.trend {
+	stroke: red;
+}
+.d.trend {
+	stroke: green;
+}
+.c.trend {
+	stroke: blue;
+}
+.z.trend {
+	stroke: orange;
+}
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+.label {
+	font-size: larger;
+	font-weight: bold;
+}
+.title {
+	font-size: x-large;
+	font-weight: bold;
+}
