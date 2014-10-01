@@ -25,7 +25,7 @@ function PerfPlot(root, title) {
 	};
 	this.performanceTop = 5;
 
-	var margin = {top: 50, right: 25, bottom: 75, left: 75};
+	var margin = {top: 100, right: 25, bottom: 75, left: 75};
 	this.width = 960 - margin.left - margin.right;
 	this.height = 500 - margin.top - margin.bottom;
 
