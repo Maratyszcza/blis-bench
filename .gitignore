@@ -1,0 +1,11 @@
+# Ninja-generated files
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Build files
+*.bc
+artifacts/blis-bench.js
+artifacts/blis-bench.asm.js
+artifacts/blis-bench.asm.js.mem
+artifacts/blis-bench.pexe
