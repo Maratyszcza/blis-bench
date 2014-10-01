@@ -25,7 +25,7 @@ function PerfPlot(root, title) {
 	};
 	this.performanceTop = 5;
 
-	var margin = {top: 50, right: 25, bottom: 75, left: 75};
+	var margin = {top: 75, right: 25, bottom: 75, left: 75};
 	this.width = 800 - margin.left - margin.right;
 	this.height = 600 - margin.top - margin.bottom;
 
@@ -88,7 +88,7 @@ function PerfPlot(root, title) {
 
 	this.title = this.chart.append("text")
 		.attr("x", (this.width / 2))
-		.attr("y", (margin.top / 2))
+		.attr("y", margin.top)
 		.attr("text-anchor", "middle")
 		.attr("class", "title")
 		.text(title);
