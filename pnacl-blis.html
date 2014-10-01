@@ -69,7 +69,11 @@
 		</object>
 		<div id="showcase"></div>
 		<script>
-			plot = new PerfPlot("#showcase", "Performance of BLIS GEMM in Portable Native Client");
+			plot = new PerfPlot("#showcase", "Performance of BLIS GEMM in Portable Native Client", [
+				{datatype: "s", name: "SGEMM"},
+				{datatype: "d", name: "DGEMM"},
+				{datatype: "c", name: "CGEMM"},
+				{datatype: "z", name: "ZGEMM"}]);
 		</script>
 	</body>
 </html>

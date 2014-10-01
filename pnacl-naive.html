@@ -39,22 +39,22 @@
 				}, true);
 				for (var i = 16; i < 1025; i *= Math.sqrt(2.0)) {
 					experiments.push({
-						"benchmark": "GEMM-Naive",
+						"benchmark": "GEMM-BLIS",
 						"datatype": "s",
 						"size": Math.round(i)
 					});
 					experiments.push({
-						"benchmark": "GEMM-Naive",
+						"benchmark": "GEMM-BLIS",
 						"datatype": "d",
 						"size": Math.round(i)
 					});
 					experiments.push({
-						"benchmark": "GEMM-Naive",
+						"benchmark": "GEMM-BLIS",
 						"datatype": "c",
 						"size": Math.round(i)
 					});
 					experiments.push({
-						"benchmark": "GEMM-Naive",
+						"benchmark": "GEMM-BLIS",
 						"datatype": "z",
 						"size": Math.round(i)
 					});
@@ -69,7 +69,11 @@
 		</object>
 		<div id="showcase"></div>
 		<script>
-			plot = new PerfPlot("#showcase", "Performance of Naive GEMM in Portable Native Client");
+			plot = new PerfPlot("#showcase", "Performance of Naive GEMM in Portable Native Client", [
+				{datatype: "s", name: "SGEMM"},
+				{datatype: "d", name: "DGEMM"},
+				{datatype: "c", name: "CGEMM"},
+				{datatype: "z", name: "ZGEMM"}]);
 		</script>
 	</body>
 </html>

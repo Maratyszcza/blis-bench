@@ -67,7 +67,11 @@
 	<body onload="onLoad();">
 		<div id="showcase"></div>
 		<script>
-			plot = new PerfPlot("#showcase", "Performance of BLIS GEMM in Asm.js");
+			plot = new PerfPlot("#showcase", "Performance of BLIS GEMM in Asm.js", [
+				{datatype: "s", name: "SGEMM"},
+				{datatype: "d", name: "DGEMM"},
+				{datatype: "c", name: "CGEMM"},
+				{datatype: "z", name: "ZGEMM"}]);
 		</script>
 	</body>
 </html>
