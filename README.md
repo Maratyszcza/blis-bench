@@ -12,6 +12,11 @@ This project visualizes performance of matrix-matrix multiplication (GEMM functi
 - [![Run Asm.js/BLIS benchmark](http://img.shields.io/badge/Asm.js%2FBLIS-run-green.svg)](https://maratyszcza.github.io/blis-bench/asmjs-blis.html) BLIS-provided `SGEMM`/`DGEMM`/`CGEMM`/`ZGEMM` in Asm.js (compiled from C with Emscripten)
 - [![Run PNaCl/BLIS benchmark](http://img.shields.io/badge/PNaCl%2FBLIS-run-green.svg)](https://maratyszcza.github.io/blis-bench/pnacl-blis.html) BLIS-provided `SGEMM`/`DGEMM`/`CGEMM`/`ZGEMM` in Portable Native Client (compiled from C)
 
+Additional Resources
+--------------------
+
+[BLIS for the Web: HPC in a Web browser](http://www.cs.utexas.edu/users/flame/BLISRetreat2014/slides/marat-blis-retreat2014/) presentation on [BLIS Retreat 2014](http://www.cs.utexas.edu/users/flame/BLISRetreat2014/)
+
 References
 ----------
 
